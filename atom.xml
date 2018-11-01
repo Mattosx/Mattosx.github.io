@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dump Thinking</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blockstorm.net/"/>
+  <updated>2018-08-24T10:15:53.865Z</updated>
+  <id>https://blockstorm.net/</id>
+  
+  <author>
+    <name>mattos</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://blockstorm.net/2018/08/24/hello-world/"/>
+    <id>https://blockstorm.net/2018/08/24/hello-world/</id>
+    <published>2018-08-24T10:15:53.865Z</published>
+    <updated>2018-08-24T10:15:53.865Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><pre><code class="cpp">static voidserver_send_cb(EV_P_ ev_io *w, int revents){    server_ctx_t *server_send_ctx = (server_ctx_t *)w;    server_t *server              = server_send_ctx-&gt;server;    remote_t *remote              = server-&gt;remote;    if (server-&gt;buf-&gt;len == 0) {        // close and free        close_and_free_remote(EV_A_ remote);        close_and_free_server(EV_A_ server);        return;    } else {        // has data to send        ssize_t s = send(server-&gt;fd, server-&gt;buf-&gt;data + server-&gt;buf-&gt;idx,                         server-&gt;buf-&gt;len, 0);        if (s == -1) {            if (errno != EAGAIN &amp;&amp; errno != EWOULDBLOCK) {                ERROR(&quot;send&quot;);                close_and_free_remote(EV_A_ remote);                close_and_free_server(EV_A_ server);            }            return;        } else if (s &lt; server-&gt;buf-&gt;len) {            // partly sent, move memory, wait for the next time to send            server-&gt;buf-&gt;len -= s;            server-&gt;buf-&gt;idx += s;            return;        } else {            // all sent out, wait for reading            server-&gt;buf-&gt;len = 0;            server-&gt;buf-&gt;idx = 0;            ev_io_stop(EV_A_ &amp; server_send_ctx-&gt;io);            ev_io_start(EV_A_ &amp; remote-&gt;recv_ctx-&gt;io);        }    }}</code></pre><pre><code class="cpp">PythonConnection::PythonConnection(PythonServer *owner, uv_tcp_t *client) : prevStderr_(NULL),                                                                            prevStdout_(NULL),                                                                            pClient_(client),                                                                            owner_(owner),                                                                            telnetSubnegotiation_(false),                                                                            historyPos_(-1),                                                                            charPos_(0),                                                                            active_(false),                                                                            multiline_(),                                                                            softspace_(0){    PyObject_INIT(static_cast&lt;PyObject *&gt;(this), &amp;_typeObject);    pClient_-&gt;data = this;    unsigned char options[] =        {            TELNET_IAC, TELNET_WILL, TELNET_ECHO,            TELNET_IAC, TELNET_WONT, TELNET_LINEMODE, 0};    this-&gt;write((char *)options);    this-&gt;write(&quot;welcome to python console&quot;);    this-&gt;write(&quot;\r\n&quot;);    this-&gt;writePrompt();    uv_read_start((uv_stream_t *)pClient_, alloc_buffer, PythonConnection::onReadDataWrapper);}</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
